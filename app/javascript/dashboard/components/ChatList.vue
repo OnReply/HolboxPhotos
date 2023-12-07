@@ -1,6 +1,6 @@
 <template>
   <div
-    class="conversations-list-wrap"
+    class="conversations-list-wrap flex-basis-clamp flex-shrink-0 flex-basis-custom overflow-hidden flex flex-col border-r rtl:border-r-0 rtl:border-l border-slate-50 dark:border-slate-800/50"
     :class="{
       hide: !showConversationList,
       'list--full-width': isOnExpandedLayout,
@@ -8,26 +8,27 @@
   >
     <slot />
     <div
-      class="chat-list__top"
-      :class="{ filter__applied: hasAppliedFiltersOrActiveFolders }"
+      class="flex items-center justify-between py-0 px-4"
+      :class="{
+        'pb-3 border-b border-slate-75 dark:border-slate-700':
+          hasAppliedFiltersOrActiveFolders,
+      }"
     >
-      <div class="flex-center chat-list__title">
+      <div class="flex max-w-[85%] justify-center items-center">
         <h1
-          class="page-sub-title text-truncate margin-bottom-0"
+          class="text-xl break-words overflow-hidden whitespace-nowrap text-ellipsis text-black-900 dark:text-slate-100 mb-0"
           :title="pageTitle"
         >
           {{ pageTitle }}
         </h1>
         <span
           v-if="!hasAppliedFiltersOrActiveFolders"
-          class="conversation--status-pill"
+          class="p-1 my-0.5 mx-1 rounded-md capitalize bg-slate-50 dark:bg-slate-800 text-xxs text-slate-600 dark:text-slate-300"
         >
-          {{
-            this.$t(`CHAT_LIST.CHAT_STATUS_FILTER_ITEMS.${activeStatus}.TEXT`)
-          }}
+          {{ $t(`CHAT_LIST.CHAT_STATUS_FILTER_ITEMS.${activeStatus}.TEXT`) }}
         </span>
       </div>
-      <div class="filter--actions">
+      <div class="flex items-center gap-1">
         <div v-if="hasAppliedFilters && !hasActiveFolders">
           <woot-button
             v-tooltip.top-end="$t('FILTER.CUSTOM_VIEWS.ADD.SAVE_BUTTON')"
@@ -104,7 +105,10 @@
       @chatTabChange="updateAssigneeTab"
     />
 
-    <p v-if="!chatListLoading && !conversationList.length" class="content-box">
+    <p
+      v-if="!chatListLoading && !conversationList.length"
+      class="overflow-auto p-4 flex justify-center items-center"
+    >
       {{ $t('CHAT_LIST.LIST.404') }}
     </p>
     <conversation-bulk-actions
@@ -123,47 +127,46 @@
     />
     <div
       ref="activeConversation"
-      class="conversations-list"
-      :class="{ 'is-context-menu-open': isContextMenuOpen }"
+      class="conversations-list flex-1"
+      :class="{ 'overflow-hidden': isContextMenuOpen }"
     >
-      <conversation-card
-        v-for="chat in conversationList"
-        :key="chat.id"
-        :active-label="label"
-        :team-id="teamId"
-        :folders-id="foldersId"
-        :chat="chat"
-        :conversation-type="conversationType"
-        :show-assignee="showAssigneeInConversationCard"
-        :selected="isConversationSelected(chat.id)"
-        @select-conversation="selectConversation"
-        @de-select-conversation="deSelectConversation"
-        @assign-agent="onAssignAgent"
-        @assign-team="onAssignTeam"
-        @assign-label="onAssignLabels"
-        @update-conversation-status="toggleConversationStatus"
-        @context-menu-toggle="onContextMenuToggle"
-        @mark-as-unread="markAsUnread"
-        @assign-priority="assignPriority"
-      />
-
+      <div>
+        <conversation-card
+          v-for="chat in conversationList"
+          :key="chat.id"
+          :active-label="label"
+          :team-id="teamId"
+          :folders-id="foldersId"
+          :chat="chat"
+          :conversation-type="conversationType"
+          :show-assignee="showAssigneeInConversationCard"
+          :selected="isConversationSelected(chat.id)"
+          @select-conversation="selectConversation"
+          @de-select-conversation="deSelectConversation"
+          @assign-agent="onAssignAgent"
+          @assign-team="onAssignTeam"
+          @assign-label="onAssignLabels"
+          @update-conversation-status="toggleConversationStatus"
+          @context-menu-toggle="onContextMenuToggle"
+          @mark-as-unread="markAsUnread"
+          @assign-priority="assignPriority"
+        />
+      </div>
       <div v-if="chatListLoading" class="text-center">
-        <span class="spinner" />
+        <span class="spinner mt-4 mb-4" />
       </div>
 
       <woot-button
         v-if="!hasCurrentPageEndReached && !chatListLoading"
         variant="clear"
         size="expanded"
+        class="load-more--button"
         @click="loadMoreConversations"
       >
         {{ $t('CHAT_LIST.LOAD_MORE_CONVERSATIONS') }}
       </woot-button>
 
-      <p
-        v-if="showEndOfListMessage"
-        class="text-center text-muted end-of-list-text"
-      >
+      <p v-if="showEndOfListMessage" class="text-center text-muted p-4">
         {{ $t('CHAT_LIST.EOF') }}
       </p>
     </div>
@@ -189,21 +192,22 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import ConversationAdvancedFilter from './widgets/conversation/ConversationAdvancedFilter';
-import ConversationBasicFilter from './widgets/conversation/ConversationBasicFilter';
-import ChatTypeTabs from './widgets/ChatTypeTabs';
-import ConversationCard from './widgets/conversation/ConversationCard';
+import ConversationAdvancedFilter from './widgets/conversation/ConversationAdvancedFilter.vue';
+import ConversationBasicFilter from './widgets/conversation/ConversationBasicFilter.vue';
+import ChatTypeTabs from './widgets/ChatTypeTabs.vue';
+import ConversationCard from './widgets/conversation/ConversationCard.vue';
 import timeMixin from '../mixins/time';
 import eventListenerMixins from 'shared/mixins/eventListenerMixins';
 import conversationMixin from '../mixins/conversations';
 import wootConstants from 'dashboard/constants/globals';
 import advancedFilterTypes from './widgets/conversation/advancedFilterItems';
 import filterQueryGenerator from '../helper/filterQueryGenerator.js';
-import AddCustomViews from 'dashboard/routes/dashboard/customviews/AddCustomViews';
+import AddCustomViews from 'dashboard/routes/dashboard/customviews/AddCustomViews.vue';
 import DeleteCustomViews from 'dashboard/routes/dashboard/customviews/DeleteCustomViews.vue';
 import ConversationBulkActions from './widgets/conversation/conversationBulkActions/Index.vue';
 import alertMixin from 'shared/mixins/alertMixin';
 import filterMixin from 'shared/mixins/filterMixin';
+import uiSettingsMixin from 'dashboard/mixins/uiSettings';
 import languages from 'dashboard/components/widgets/conversation/advancedFilterItems/languages';
 import countries from 'shared/constants/countries';
 import { generateValuesForEditCustomViews } from 'dashboard/helper/customViewsHelper';
@@ -235,6 +239,7 @@ export default {
     eventListenerMixins,
     alertMixin,
     filterMixin,
+    uiSettingsMixin,
   ],
   props: {
     conversationInbox: {
@@ -405,8 +410,12 @@ export default {
     },
     conversationListPagination() {
       const conversationsPerPage = 25;
+      const hasChatsOnView =
+        this.chatsOnView &&
+        Array.isArray(this.chatsOnView) &&
+        !this.chatsOnView.length;
       const isNoFiltersOrFoldersAndChatListNotEmpty =
-        !this.hasAppliedFiltersOrActiveFolders && this.chatsOnView !== [];
+        !this.hasAppliedFiltersOrActiveFolders && hasChatsOnView;
       const isUnderPerPage =
         this.chatsOnView.length < conversationsPerPage &&
         this.activeAssigneeTabCount < conversationsPerPage &&
@@ -512,6 +521,7 @@ export default {
     },
   },
   mounted() {
+    this.setFiltersFromUISettings();
     this.$store.dispatch('setChatStatusFilter', this.activeStatus);
     this.$store.dispatch('setChatSortFilter', this.activeSortBy);
     this.resetAndFetchData();
@@ -540,6 +550,12 @@ export default {
       };
       this.$store.dispatch('customViews/update', payloadData);
       this.closeAdvanceFiltersModal();
+    },
+    setFiltersFromUISettings() {
+      const { conversations_filter_by: filterBy = {} } = this.uiSettings;
+      const { status, order_by: orderBy } = filterBy;
+      this.activeStatus = status || wootConstants.STATUS_TYPE.OPEN;
+      this.activeSortBy = orderBy || wootConstants.SORT_BY_TYPE.LATEST;
     },
     onClickOpenAddFoldersModal() {
       this.showAddFoldersModal = true;
@@ -638,10 +654,8 @@ export default {
     },
     handleKeyEvents(e) {
       if (hasPressedAltAndJKey(e)) {
-        const {
-          allConversations,
-          activeConversationIndex,
-        } = this.getKeyboardListenerParams();
+        const { allConversations, activeConversationIndex } =
+          this.getKeyboardListenerParams();
         if (activeConversationIndex === -1) {
           allConversations[0].click();
         }
@@ -954,72 +968,41 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-@import '~dashboard/assets/scss/woot';
-
-.spinner {
-  margin-top: var(--space-normal);
-  margin-bottom: var(--space-normal);
-}
-
-.conversations-list {
-  // Prevent the list from scrolling if the submenu is opened
-  &.is-context-menu-open {
-    overflow: hidden !important;
+<style scoped>
+@tailwind components;
+@layer components {
+  .flex-basis-clamp {
+    flex-basis: clamp(20rem, 4vw + 21.25rem, 27.5rem);
   }
 }
+</style>
 
+<style scoped lang="scss">
 .conversations-list-wrap {
-  flex-shrink: 0;
-  flex-basis: clamp(32rem, 4vw + 34rem, 44rem);
-  overflow: hidden;
-
   &.hide {
-    display: none;
+    @apply hidden;
   }
 
   &.list--full-width {
-    flex-basis: 100%;
-  }
-
-  .page-sub-title {
-    font-size: var(--font-size-two);
+    @apply basis-full;
   }
 }
-.filter--actions {
-  display: flex;
-  align-items: center;
-  gap: var(--space-smaller);
+
+.conversations-list {
+  @apply overflow-hidden hover:overflow-y-auto;
 }
 
-.filter__applied {
-  padding-bottom: var(--space-slab) !important;
-  border-bottom: 1px solid var(--color-border);
+.load-more--button {
+  @apply text-center rounded-none;
 }
 
 .tab--chat-type {
-  padding: 0 var(--space-normal);
+  @apply py-0 px-4;
 
   ::v-deep {
     .tabs {
-      padding: 0;
+      @apply p-0;
     }
   }
-}
-
-.conversation--status-pill {
-  background: var(--color-background);
-  border-radius: var(--border-radius-small);
-  color: var(--color-medium-gray);
-  font-size: var(--font-size-micro);
-  font-weight: var(--font-weight-medium);
-  margin: var(--space-micro) var(--space-small) 0;
-  padding: var(--space-smaller);
-  text-transform: capitalize;
-}
-
-.chat-list__title {
-  max-width: 85%;
 }
 </style>
