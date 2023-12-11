@@ -2,7 +2,7 @@ class AdministratorNotifications::ChannelNotificationsMailer < ApplicationMailer
   def slack_disconnect
     return unless smtp_config_set_or_development?
 
-    subject = 'Your Slack integration has expired'
+    subject = 'Tu integración de Slack ha caducado'
     @action_url = "#{ENV.fetch('FRONTEND_URL', nil)}/app/accounts/#{Current.account.id}/settings/integrations/slack"
     send_mail_with_liquid(to: admin_emails, subject: subject) and return
   end
@@ -10,14 +10,14 @@ class AdministratorNotifications::ChannelNotificationsMailer < ApplicationMailer
   def dialogflow_disconnect
     return unless smtp_config_set_or_development?
 
-    subject = 'Your Dialogflow integration was disconnected'
+    subject = 'Tu integración de Dialogflow fue desconectada'
     send_mail_with_liquid(to: admin_emails, subject: subject) and return
   end
 
   def facebook_disconnect(inbox)
     return unless smtp_config_set_or_development?
 
-    subject = 'Your Facebook page connection has expired'
+    subject = 'La conexión a tu página de Facebook ha caducado'
     @action_url = "#{ENV.fetch('FRONTEND_URL', nil)}/app/accounts/#{Current.account.id}/settings/inboxes/#{inbox.id}"
     send_mail_with_liquid(to: admin_emails, subject: subject) and return
   end
@@ -25,7 +25,7 @@ class AdministratorNotifications::ChannelNotificationsMailer < ApplicationMailer
   def whatsapp_disconnect(inbox)
     return unless smtp_config_set_or_development?
 
-    subject = 'Your Whatsapp connection has expired'
+    subject = 'Tu conexión de Whatsapp ha caducado'
     @action_url = "#{ENV.fetch('FRONTEND_URL', nil)}/app/accounts/#{Current.account.id}/settings/inboxes/#{inbox.id}"
     send_mail_with_liquid(to: admin_emails, subject: subject) and return
   end
@@ -33,7 +33,7 @@ class AdministratorNotifications::ChannelNotificationsMailer < ApplicationMailer
   def email_disconnect(inbox)
     return unless smtp_config_set_or_development?
 
-    subject = 'Your email inbox has been disconnected. Please update the credentials for SMTP/IMAP'
+    subject = 'Su bandeja de entrada de correo electrónico ha sido desconectada. Actualice las credenciales para SMTP/IMAP.'
     @action_url = "#{ENV.fetch('FRONTEND_URL', nil)}/app/accounts/#{Current.account.id}/settings/inboxes/#{inbox.id}"
     send_mail_with_liquid(to: admin_emails, subject: subject) and return
   end
@@ -41,7 +41,7 @@ class AdministratorNotifications::ChannelNotificationsMailer < ApplicationMailer
   def contact_import_complete(resource)
     return unless smtp_config_set_or_development?
 
-    subject = 'Contact Import Completed'
+    subject = 'Importación de contactos completada'
 
     @action_url = Rails.application.routes.url_helpers.rails_blob_url(resource.failed_records) if resource.failed_records.attached?
     @action_url ||= "#{ENV.fetch('FRONTEND_URL', nil)}/app/accounts/#{resource.account.id}/contacts"
@@ -55,7 +55,7 @@ class AdministratorNotifications::ChannelNotificationsMailer < ApplicationMailer
     return unless smtp_config_set_or_development?
 
     @action_url = file_url
-    subject = "Your contact's export file is available to download."
+    subject = "El archivo de exportación de su contacto está disponible para descargar."
     send_mail_with_liquid(to: admin_emails, subject: subject) and return
   end
 
