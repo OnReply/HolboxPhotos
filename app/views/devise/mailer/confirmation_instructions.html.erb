@@ -7,14 +7,14 @@
 <% end %>
 
 <% if @resource.confirmed? %>
-  <p>You can login to your <%= global_config['BRAND_NAME'] || 'Chatwoot' %> account through the link below:</p>
+  <p>Puede iniciar sesión en su cuenta de <%= global_config['BRAND_NAME'] || 'HolboxPhotos' %> a través del siguiente enlace:</p>
 <% else %>
   <% if account_user&.inviter.blank? %>
   <p>
-    Welcome to <%= global_config['BRAND_NAME'] || 'Chatwoot' %>! We have a suite of powerful tools ready for you to explore. Before that we quickly need to verify your email address to know it's really you.
+    ¡Bienvenido a <%= global_config['BRAND_NAME'] || 'HolboxPhotos' %>! ¡Ya está casi todo LISTO! . Pero antes, necesitamos verificar rápidamente tu dirección de correo electrónico para asegurarnos de que realmente eres tú.
   </p>
   <% end %>
-  <p>Please take a moment and click the link below and activate your account.</p>
+  <p>Por favor, tómate un momento para hacer clic en el enlace a continuación y activar tu cuenta.</p>
 <% end %>
 
 

@@ -50,7 +50,7 @@ RSpec.describe ConversationReplyMailer do
       let(:cc_mail) { described_class.reply_with_summary(cc_message.conversation, message.id).deliver_now }
 
       it 'renders the default subject' do
-        expect(mail.subject).to eq("[##{message.conversation.display_id}] New messages on this conversation")
+        expect(mail.subject).to eq("[##{message.conversation.display_id}] Nuevos mensajes en esta conversación")
       end
 
       it 'renders the subject in conversation as reply' do
@@ -109,7 +109,7 @@ RSpec.describe ConversationReplyMailer do
       end
 
       it 'renders the default subject' do
-        expect(mail.subject).to eq("[##{message_2.conversation.display_id}] New messages on this conversation")
+        expect(mail.subject).to eq("[##{message_2.conversation.display_id}] Nuevos mensajes en esta conversación")
       end
 
       it 'renders the subject in conversation' do
@@ -143,7 +143,7 @@ RSpec.describe ConversationReplyMailer do
       let(:mail) { described_class.email_reply(message).deliver_now }
 
       it 'renders the subject' do
-        expect(mail.subject).to eq("[##{message.conversation.display_id}] New messages on this conversation")
+        expect(mail.subject).to eq("[##{message.conversation.display_id}] Nuevos mensajes en esta conversación")
       end
 
       it 'renders the body' do
