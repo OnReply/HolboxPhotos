@@ -6,7 +6,7 @@ describe('#MessageFormatter', () => {
       const message =
         'Chatwoot is an opensource tool. [Chatwoot](https://www.chatwoot.com)';
       expect(new MessageFormatter(message).formattedMessage).toMatch(
-        '<p>Chatwoot is an opensource tool. <a href="https://www.chatwoot.com" class="link" rel="noreferrer noopener nofollow" target="_blank">Chatwoot</a></p>'
+        '<p>Chatwoot is an opensource tool. <a href="https://www.chatwoot.com" class="link" rel="noreferrer noopener nofollow" target="_blank">HolboxPhotos</a></p>'
       );
     });
     it('should format correctly', () => {

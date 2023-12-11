@@ -377,7 +377,7 @@
         "SLUG": {
           "LABEL": "Slug",
           "PLACEHOLDER": "Category slug for urls",
-          "HELP_TEXT": "app.chatwoot.com/hc/my-portal/en-US/categories/my-slug",
+          "HELP_TEXT": "info.holboxphotos.com/hc/my-portal/en-US/categories/my-slug",
           "ERROR": "Slug is required"
         },
         "DESCRIPTION": {
@@ -408,7 +408,7 @@
         "SLUG": {
           "LABEL": "Slug",
           "PLACEHOLDER": "Category slug for urls",
-          "HELP_TEXT": "app.chatwoot.com/hc/my-portal/en-US/categories/my-slug",
+          "HELP_TEXT": "info.holboxphotos.com/hc/my-portal/en-US/categories/my-slug",
           "ERROR": "Slug is required"
         },
         "DESCRIPTION": {

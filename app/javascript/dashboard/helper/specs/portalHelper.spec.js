@@ -4,7 +4,7 @@ describe('PortalHelper', () => {
   describe('buildPortalURL', () => {
     it('returns the correct url', () => {
       window.chatwootConfig = {
-        hostURL: 'https://app.chatwoot.com',
+        hostURL: 'https://info.holboxphotos.com',
         helpCenterURL: 'https://help.chatwoot.com',
       };
       expect(buildPortalURL('handbook')).toEqual(
@@ -17,7 +17,7 @@ describe('PortalHelper', () => {
   describe('buildPortalArticleURL', () => {
     it('returns the correct url', () => {
       window.chatwootConfig = {
-        hostURL: 'https://app.chatwoot.com',
+        hostURL: 'https://info.holboxphotos.com',
         helpCenterURL: 'https://help.chatwoot.com',
       };
       expect(
