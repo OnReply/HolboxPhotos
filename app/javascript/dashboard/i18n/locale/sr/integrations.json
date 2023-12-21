@@ -80,7 +80,7 @@
       },
       "HELP_TEXT": {
         "TITLE": "Koristi Slack integraciju",
-        "BODY": "<br/><p>Chatwoot će sada sinhronizovati sve dolazne razgovore u kanal <b><i>customer-conversations</i></b> unutar vašeg slack radnog mesta.</p><p>Odgovaranjem na razgovor u <b><i>customer-conversations</i></b> slack kanal će napraviti odgovor potrošaču kroz HolboxPhotos.</p><p>Započnite odgovore sa <b><i>note:</i></b> da bi ste napravili privatne beleške umesto odgovora.</p><p>Ako odgovarač na slack-u ima agentski profil u HolboxPhotos-u pod istom adresom e-pošte, odgovori će biti odgovarajuće povezani.</p><p>Kada odgovarač nema povezani agentski profil, odgovori će biti napravljeni od strane bot profila.</p>",
+        "BODY": "<br/><p>HolboxPhotos će sada sinhronizovati sve dolazne razgovore u kanal <b><i>customer-conversations</i></b> unutar vašeg slack radnog mesta.</p><p>Odgovaranjem na razgovor u <b><i>customer-conversations</i></b> slack kanal će napraviti odgovor potrošaču kroz HolboxPhotos.</p><p>Započnite odgovore sa <b><i>note:</i></b> da bi ste napravili privatne beleške umesto odgovora.</p><p>Ako odgovarač na slack-u ima agentski profil u HolboxPhotos-u pod istom adresom e-pošte, odgovori će biti odgovarajuće povezani.</p><p>Kada odgovarač nema povezani agentski profil, odgovori će biti napravljeni od strane bot profila.</p>",
         "SELECTED": "selected"
       },
       "SELECT_CHANNEL": {

@@ -80,7 +80,7 @@
       },
       "HELP_TEXT": {
         "TITLE": "Brug Slack Integration",
-        "BODY": "<br/><p>Chatwoot vil nu synkronisere alle indgående samtaler ind i <b><i>kundesamtaler</i></b> kanalen i din slack arbejdsplads.</p><p>Svar på en samtaletråd i <b><i>kunde-samtaler</i></b> slack kanal vil skabe et svar tilbage til kunden gennem HolboxPhotos.</p><p>Start svarene med <b><i>note:</i></b> for at oprette private noter i stedet for svar.</p><p>Hvis replikatoren på slack har en agentprofil i HolboxPhotos under samme e-mail, vil svarene blive tilknyttet i overensstemmelse hermed.</p><p>Når replikatoren ikke har en tilknyttet agentprofil, vil svarene blive fremsat fra bot-profilen.</p>",
+        "BODY": "<br/><p>HolboxPhotos vil nu synkronisere alle indgående samtaler ind i <b><i>kundesamtaler</i></b> kanalen i din slack arbejdsplads.</p><p>Svar på en samtaletråd i <b><i>kunde-samtaler</i></b> slack kanal vil skabe et svar tilbage til kunden gennem HolboxPhotos.</p><p>Start svarene med <b><i>note:</i></b> for at oprette private noter i stedet for svar.</p><p>Hvis replikatoren på slack har en agentprofil i HolboxPhotos under samme e-mail, vil svarene blive tilknyttet i overensstemmelse hermed.</p><p>Når replikatoren ikke har en tilknyttet agentprofil, vil svarene blive fremsat fra bot-profilen.</p>",
         "SELECTED": "selected"
       },
       "SELECT_CHANNEL": {

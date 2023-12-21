@@ -80,7 +80,7 @@
       },
       "HELP_TEXT": {
         "TITLE": "Utilizarea integrării Slack",
-        "BODY": "<br/><p>Chatwoot va sincroniza acum toate conversațiile primite în canalul <b><i>de conversații cu clienții</i></b> din interiorul locului de muncă slăbit.</p><p>Răspunsul la un fir de conversație în canalul de slăbire <b><i>a conversațiilor clienților</i></b> va crea un răspuns înapoi la client prin HolboxPhotos.</p><p>Începeți răspunsurile cu <b><i>notă:</i></b> pentru a crea note private în loc de răspunsuri.</p><p>În cazul în care replier pe slack are un profil de agent în HolboxPhotos sub același e-mail, răspunsurile vor fi asociate în consecință.</p><p>Atunci când replierul nu are un profil de agent asociat, răspunsurile vor fi făcute din profilul botului.</p>",
+        "BODY": "<br/><p>HolboxPhotos va sincroniza acum toate conversațiile primite în canalul <b><i>de conversații cu clienții</i></b> din interiorul locului de muncă slăbit.</p><p>Răspunsul la un fir de conversație în canalul de slăbire <b><i>a conversațiilor clienților</i></b> va crea un răspuns înapoi la client prin HolboxPhotos.</p><p>Începeți răspunsurile cu <b><i>notă:</i></b> pentru a crea note private în loc de răspunsuri.</p><p>În cazul în care replier pe slack are un profil de agent în HolboxPhotos sub același e-mail, răspunsurile vor fi asociate în consecință.</p><p>Atunci când replierul nu are un profil de agent asociat, răspunsurile vor fi făcute din profilul botului.</p>",
         "SELECTED": "selected"
       },
       "SELECT_CHANNEL": {

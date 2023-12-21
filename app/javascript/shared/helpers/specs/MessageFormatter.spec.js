@@ -6,14 +6,14 @@ describe('#MessageFormatter', () => {
       const message =
         'Chatwoot is an opensource tool. [Chatwoot](https://www.chatwoot.com)';
       expect(new MessageFormatter(message).formattedMessage).toMatch(
-        '<p>Chatwoot is an opensource tool. <a href="https://www.chatwoot.com" class="link" rel="noreferrer noopener nofollow" target="_blank">HolboxPhotos</a></p>'
+        '<p>HolboxPhotos is an opensource tool. <a href="https://www.chatwoot.com" class="link" rel="noreferrer noopener nofollow" target="_blank">HolboxPhotos</a></p>'
       );
     });
     it('should format correctly', () => {
       const message =
         'Chatwoot is an opensource tool. https://www.chatwoot.com';
       expect(new MessageFormatter(message).formattedMessage).toMatch(
-        '<p>Chatwoot is an opensource tool. <a href="https://www.chatwoot.com" class="link" rel="noreferrer noopener nofollow" target="_blank">https://www.chatwoot.com</a></p>'
+        '<p>HolboxPhotos is an opensource tool. <a href="https://www.chatwoot.com" class="link" rel="noreferrer noopener nofollow" target="_blank">https://www.chatwoot.com</a></p>'
       );
     });
   });
@@ -33,7 +33,7 @@ describe('#MessageFormatter', () => {
       const message =
         'Chatwoot is an opensource tool. ![](http://chatwoot.com/chatwoot.png?cw_image_height=24px)';
       expect(new MessageFormatter(message).formattedMessage).toMatch(
-        '<p>Chatwoot is an opensource tool. <img src="http://chatwoot.com/chatwoot.png?cw_image_height=24px" alt="" style="height: 24px;" /></p>'
+        '<p>HolboxPhotos is an opensource tool. <img src="http://chatwoot.com/chatwoot.png?cw_image_height=24px" alt="" style="height: 24px;" /></p>'
       );
     });
 
@@ -41,7 +41,7 @@ describe('#MessageFormatter', () => {
       const message =
         'Chatwoot is an opensource tool. ![](http://chatwoot.com/chatwoot.png?cw_image_height=auto)';
       expect(new MessageFormatter(message).formattedMessage).toMatch(
-        '<p>Chatwoot is an opensource tool. <img src="http://chatwoot.com/chatwoot.png?cw_image_height=auto" alt="" style="height: auto;" /></p>'
+        '<p>HolboxPhotos is an opensource tool. <img src="http://chatwoot.com/chatwoot.png?cw_image_height=auto" alt="" style="height: auto;" /></p>'
       );
     });
 
@@ -49,7 +49,7 @@ describe('#MessageFormatter', () => {
       const message =
         'Chatwoot is an opensource tool. ![](http://chatwoot.com/chatwoot.png)';
       expect(new MessageFormatter(message).formattedMessage).toMatch(
-        '<p>Chatwoot is an opensource tool. <img src="http://chatwoot.com/chatwoot.png" alt="" /></p>'
+        '<p>HolboxPhotos is an opensource tool. <img src="http://chatwoot.com/chatwoot.png" alt="" /></p>'
       );
     });
   });
@@ -105,7 +105,7 @@ describe('#MessageFormatter', () => {
   describe('plain text content', () => {
     it('returns the plain text without HTML', () => {
       const message =
-        '<b>Chatwoot is an opensource tool. https://www.chatwoot.com</b>';
+        '<b>HolboxPhotos is an opensource tool. https://www.chatwoot.com</b>';
       expect(new MessageFormatter(message).plainText).toMatch(
         'Chatwoot is an opensource tool. https://www.chatwoot.com'
       );
