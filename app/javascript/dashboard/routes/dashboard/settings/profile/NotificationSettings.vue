@@ -170,7 +170,7 @@
           <input
             v-model="selectedEmailFlags"
             class="notification--checkbox"
-            type="checkbox"
+            type="checkbox"            
             value="email_conversation_assignment"
             @input="handleEmailInput"
           />
