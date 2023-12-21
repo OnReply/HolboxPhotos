@@ -1,5 +1,5 @@
 class AgentNotifications::ConversationNotificationsMailer < ApplicationMailer
-  def conversation_creation(conversation, agent)
+  def conversation_creation(conversation, agent, _user)
     return unless smtp_config_set_or_development?
 
     @agent = agent
@@ -9,7 +9,7 @@ class AgentNotifications::ConversationNotificationsMailer < ApplicationMailer
     send_mail_with_liquid(to: @agent.email, subject: subject) and return
   end
 
-  def conversation_assignment(conversation, agent)
+  def conversation_assignment(conversation, agent, _user)
     return unless smtp_config_set_or_development?
 
     @agent = agent
@@ -19,18 +19,18 @@ class AgentNotifications::ConversationNotificationsMailer < ApplicationMailer
     send_mail_with_liquid(to: @agent.email, subject: subject) and return
   end
 
-  def conversation_mention(message, agent)
+  def conversation_mention(conversation, agent, message)
     return unless smtp_config_set_or_development?
 
     @agent = agent
-    @conversation = message.conversation
+    @conversation = conversation
     @message = message
     subject = "#{@agent.available_name}, Te han mencionado en la conversación [ID - #{@conversation.display_id}]"
     @action_url = app_account_conversation_url(account_id: @conversation.account_id, id: @conversation.display_id)
     send_mail_with_liquid(to: @agent.email, subject: subject) and return
   end
 
-  def assigned_conversation_new_message(message, agent)
+  def assigned_conversation_new_message(conversation, agent, message)
     return unless smtp_config_set_or_development?
     # Don't spam with email notifications if agent is online
     return if ::OnlineStatusTracker.get_presence(message.account_id, 'User', agent.id)
@@ -42,7 +42,7 @@ class AgentNotifications::ConversationNotificationsMailer < ApplicationMailer
     send_mail_with_liquid(to: @agent.email, subject: subject) and return
   end
 
-  def participating_conversation_new_message(message, agent)
+  def participating_conversation_new_message(conversation, agent, message)
     return unless smtp_config_set_or_development?
     # Don't spam with email notifications if agent is online
     return if ::OnlineStatusTracker.get_presence(message.account_id, 'User', agent.id)
